@@ -1,0 +1,49 @@
+<template>
+    <form>
+        <div
+            class="slds-p-top_small slds-p-bottom_medium  slds-theme_default slds-text-heading_medium divSize">
+            <b>Country Information</b></div>
+        <div class="slds-box slds-theme_default divSize">
+            <lightning-combobox data-name="country" label="Country" value={countryCode} options={countryOptions}  class="comboboxAlign"></lightning-combobox>
+            <lightning-input 
+                    type="text" 
+                    data-name="ZipCode"
+                    label="Zip Code"
+                    maxlength="10"
+                    value={zipCodevalue} class="comboboxAlign">
+            </lightning-input>
+            <div class="slds-m-top_small slds-align_absolute-center">
+                <lightning-button 
+                    variant="Neutral" 
+                    label="Cancel" 
+                    class="slds-m-left_x-small" 
+                    onclick={handleCancel}>
+                </lightning-button>
+                <lightning-button 
+                    variant="brand" 
+                    class="slds-m-left_x-small" 
+                    label="Submit" 
+                    onclick={sendInformation}>
+                </lightning-button>
+            </div>
+        </div>
+    </form>
+    <lightning-layout multiple-rows="true">
+        <lightning-layout-item padding="around-small" >
+            <div class="my-card-child">
+                <lightning-card class="inner_card">
+                    <h3 slot="title" class="card-header">
+                        Country Information without US  country                                    
+                        <lightning-icon icon-name="utility:world" 
+                          size="small"></lightning-icon>
+                    </h3>                    
+                    <template if:true={countryDta}>
+                        <lightning-datatable data={countryDta} columns={columns} key-field="Id">
+                        </lightning-datatable>
+                    </template>
+                    </lightning-card>
+                    </div>
+                    </lightning-layout-item>
+    </lightning-layout>
+    <c-country-information-child  ></c-country-information-child>
+</template>

@@ -1,0 +1,36 @@
+<template>
+    <div class="main-container">
+            <lightning-layout multiple-rows="true">
+                    <lightning-layout-item padding="around-small" >
+                        <div class="my-card-child">
+                            <lightning-card class="inner_card">
+
+                                <h3 slot="title" class="card-header">
+                                    Country Information US                                      
+                                    <lightning-icon icon-name="utility:world" 
+                                      size="small"></lightning-icon>
+                                </h3>
+                                <div class="slds-p-horizontal_small">
+                                    <template if:true={isShowing}>
+                                    <p>Post Code: {infocoun.postCode}</p>
+                                    <p>Country: {infocoun.country}</p>
+                                    <p>Country Abbreviation: {infocoun.countryAbbreviation}</p>
+                                    <template for:each={infocoun.places} for:item="item">
+                                        <p key={item.stateAbbreviation}>Place Name : {item.placeName}</p>
+                                        <p  key={item.stateAbbreviation}>Longitude : {item.longitude}</p>
+                                        <p key={item.stateAbbreviation}>State : {item.state}</p>
+                                        <p key={item.stateAbbreviation}>State Abbreviation : {item.stateAbbreviation}</p>
+                                        <p key={item.stateAbbreviation}>Latitude : {item.latitude}</p>
+                                    </template>
+
+                                    </template>
+                                    <template if:false={isShowing}>
+                                        <p>No Data</p>
+                                    </template>
+                                </div>
+                            </lightning-card>
+                        </div>
+                    </lightning-layout-item>
+            </lightning-layout>
+    </div>
+</template>
